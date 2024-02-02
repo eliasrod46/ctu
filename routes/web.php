@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//-- raiz a login
 Route::get('/', function () {
     return redirect()->route('login');
 });
