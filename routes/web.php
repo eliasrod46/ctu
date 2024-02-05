@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompraController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\UserController;
@@ -32,18 +33,24 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    //Usuarios
-    Route::get('/usuarios/', [UserController::class, 'index'])->name('user.listado');
-    Route::get('/usuarios/create', [UserController::class, 'create'])->name('user.agregar');
-    //Route::get('/usuarios/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
 
-    //Productos
+    //Productos -> to replace
     Route::get('/productos/', [ProductoController::class, 'index'])->name('producto.listado');
     Route::get('/productos/create', [ProductoController::class, 'create'])->name('producto.agregar');
     Route::get('/productos/modificar/{id}', [ProductoController::class, 'edit'])->name('producto.modificar');
     Route::get('/productos/delete/{id}', [ProductoController::class, 'delete'])->name('producto.delete');
     Route::get('/productos/detalle/{id}', [ProductoController::class, 'detalle'])->name('producto.detalle');
     Route::get('/productos/descripcion', [ProductoController::class, 'descripcion'])->name('producto.descripcion');
+    
+    //Products
+    Route::resource('/products', ProductController::class);
+    
+    
+    //Usuarios
+    Route::get('/usuarios/', [UserController::class, 'index'])->name('user.listado');
+    Route::get('/usuarios/create', [UserController::class, 'create'])->name('user.agregar');
+    //Route::get('/usuarios/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
+   
    
     //Proveedores
     Route::get('/proveedores/', [ProveedorController::class, 'index'])->name('proveedor.listado');
