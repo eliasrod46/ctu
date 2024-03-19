@@ -16,7 +16,7 @@ import { Head, useForm } from "@inertiajs/react";
 import { useEffect } from "react";
 import { useState } from "react";
 
-export default function Dashboard({ auth, suppliers }) {
+export default function SuppliersIndex({ auth, suppliers }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
