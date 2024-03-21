@@ -1,5 +1,6 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, useForm } from "@inertiajs/react";
+import SuppliersIndex from "./Suppliers";
 
 export default function Dashboard({ auth }) {
     const { get } = useForm();
@@ -47,7 +48,7 @@ export default function Dashboard({ auth }) {
                         {/* cards */}
                         <div className="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">
                             {/* admin - menu */}
-                            <div>
+                            {/* <div>
                                 <div className="flex items-center">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -75,9 +76,9 @@ export default function Dashboard({ auth }) {
                                     En esta sección podrá gestionar los datos de
                                     quienes administren el sitio.
                                 </p>
-                            </div>
+                            </div> */}
                             {/* product - menu */}
-                            <div>
+                            {/* <div>
                                 <div className="flex items-center">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -95,12 +96,7 @@ export default function Dashboard({ auth }) {
                                     </svg>
 
                                     <h2 className="ml-3 text-xl font-semibold text-red-500">
-                                        <a
-                                            href="#"
-                                            onClick={productsMenuHandler}
-                                        >
-                                            Productos
-                                        </a>
+                                        <a href="#">Productos</a>
                                     </h2>
                                 </div>
 
@@ -109,9 +105,9 @@ export default function Dashboard({ auth }) {
                                     productos, precios y características de cada
                                     uno de ellos.
                                 </p>
-                            </div>
+                            </div> */}
                             {/* sells - menu */}
-                            <div>
+                            {/* <div>
                                 <div className="flex items-center">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -140,9 +136,9 @@ export default function Dashboard({ auth }) {
                                     realizadas, controlar la caja y generar
                                     reportes de ventas.
                                 </p>
-                            </div>
+                            </div> */}
                             {/* buy - menu */}
-                            <div>
+                            {/* <div>
                                 <div className="flex items-center">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -170,7 +166,7 @@ export default function Dashboard({ auth }) {
                                     En este módulo podrá llevar registro de las
                                     compras realizadas.
                                 </p>
-                            </div>
+                            </div> */}
                             {/* providers - menu */}
                             <div>
                                 <div className="flex items-center">
@@ -190,10 +186,7 @@ export default function Dashboard({ auth }) {
                                     </svg>
 
                                     <h2 className="ml-3 text-xl font-semibold text-red-500">
-                                        <a
-                                            href="#"
-                                            onClick={providersMenuHandler}
-                                        >
+                                        <a href={route("suppliers.index")}>
                                             Proveedores
                                         </a>
                                     </h2>
@@ -205,7 +198,7 @@ export default function Dashboard({ auth }) {
                                 </p>
                             </div>
                             {/* book - menu */}
-                            <div>
+                            {/* <div>
                                 <div className="flex items-center">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -233,7 +226,7 @@ export default function Dashboard({ auth }) {
                                     En esta sección podrá controlar la caja,
                                     ingresos y egresos.
                                 </p>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

@@ -1,19 +1,32 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head /*, useForm*/ } from "@inertiajs/react";
-import { useForm } from "react-hook-form";
+import { Head, useForm } from "@inertiajs/react";
 import SuppliersLabel from "../../Components/SuppliersLabel";
+import SuppliersInputs from "../../Components/SuppliersInput";
 
 export default function SuppliersCreate({ auth }) {
-    const {
-        register,
-        handleSubmit,
-        watch,
-        post,
-        formState: { errors },
-    } = useForm();
+    const { data, setData, post, processing, errors, transform } = useForm({
+        lastname: "",
+        name: "",
+        dni: "",
+        state: "",
+        cbu: "",
+        alias: "",
+        phone: "",
+        email: "",
+    });
 
     const onSubmit = (e) => {
+        e.preventDefault();
+
         post(route("suppliers.store"));
+    };
+
+    const handleChange = (e) => {
+        if (e.target.type == "number") {
+            setData(e.target.name, Number(e.target.value));
+        } else {
+            setData(e.target.name, e.target.value);
+        }
     };
 
     return (
@@ -28,7 +41,7 @@ export default function SuppliersCreate({ auth }) {
             <Head title="Proveedores" />
 
             <div className="m-auto w-3/4">
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={onSubmit}>
                     {/*{-- data --}*/}
                     <div className="grid grid-rows-1 gap-4">
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -37,19 +50,19 @@ export default function SuppliersCreate({ auth }) {
                                 <SuppliersLabel label="Apellidos" />
                                 {/*{-- input --}*/}
                                 <input
-                                    placeholder="Apellidos"
-                                    className="block mt-1 w-full"
+                                    value={data.lastname}
+                                    onChange={handleChange}
+                                    required
+                                    name="lastname"
                                     type="text"
                                     id="lastname"
-                                    {...register("lastname", {
-                                        required: true,
-                                    })}
+                                    placeholder="Apellidos"
+                                    className="block mt-1 w-full"
                                 />
-                                {/*{-- errors --}*/}
                                 {errors.lastname && (
-                                    <span className="text-red-500 text-sm">
-                                        This field is required
-                                    </span>
+                                    <div className="text-red-500 text-sm">
+                                        {errors.lastname}
+                                    </div>
                                 )}
                             </div>
                             {/*{-- name --}*/}
@@ -57,19 +70,19 @@ export default function SuppliersCreate({ auth }) {
                                 <SuppliersLabel label="Nombre" />
                                 {/*{-- input --}*/}
                                 <input
-                                    placeholder="Nombre"
-                                    className="block mt-1 w-full"
+                                    value={data.name}
+                                    onChange={handleChange}
+                                    required
+                                    name="name"
                                     type="text"
                                     id="name"
-                                    {...register("name", {
-                                        required: true,
-                                    })}
+                                    placeholder="Nombre"
+                                    className="block mt-1 w-full"
                                 />
-                                {/*{-- errors --}*/}
                                 {errors.name && (
-                                    <span className="text-red-500 text-sm">
-                                        This field is required
-                                    </span>
+                                    <div className="text-red-500 text-sm">
+                                        {errors.name}
+                                    </div>
                                 )}
                             </div>
                             {/*{-- dni --}*/}
@@ -77,19 +90,19 @@ export default function SuppliersCreate({ auth }) {
                                 <SuppliersLabel label="DNI" />
                                 {/*{-- input --}*/}
                                 <input
-                                    placeholder="DNI"
-                                    className="block mt-1 w-full"
+                                    value={data.dni}
+                                    onChange={handleChange}
+                                    required
+                                    name="dni"
                                     type="number"
                                     id="dni"
-                                    {...register("dni", {
-                                        required: true,
-                                    })}
+                                    placeholder="DNI"
+                                    className="block mt-1 w-full"
                                 />
-                                {/*{-- errors --}*/}
                                 {errors.dni && (
-                                    <span className="text-red-500 text-sm">
-                                        This field is required
-                                    </span>
+                                    <div className="text-red-500 text-sm">
+                                        {errors.dni}
+                                    </div>
                                 )}
                             </div>
                             {/*{-- state --}*/}
@@ -97,19 +110,19 @@ export default function SuppliersCreate({ auth }) {
                                 <SuppliersLabel label="Provincia" />
                                 {/*{-- input --}*/}
                                 <input
-                                    placeholder="Provincia"
-                                    className="block mt-1 w-full"
+                                    value={data.state}
+                                    onChange={handleChange}
+                                    required
+                                    name="state"
                                     type="text"
                                     id="state"
-                                    {...register("state", {
-                                        required: true,
-                                    })}
+                                    placeholder="Provincia"
+                                    className="block mt-1 w-full"
                                 />
-                                {/*{-- errors --}*/}
                                 {errors.state && (
-                                    <span className="text-red-500 text-sm">
-                                        This field is required
-                                    </span>
+                                    <div className="text-red-500 text-sm">
+                                        {errors.state}
+                                    </div>
                                 )}
                             </div>
                             {/*{-- cbu --}*/}
@@ -117,19 +130,19 @@ export default function SuppliersCreate({ auth }) {
                                 <SuppliersLabel label="CBU" />
                                 {/*{-- input --}*/}
                                 <input
+                                    value={data.cbu}
+                                    onChange={handleChange}
+                                    required
+                                    name="cbu"
+                                    type="text"
+                                    id="cbu"
                                     placeholder="CBU"
                                     className="block mt-1 w-full"
-                                    type="number"
-                                    id="cbu"
-                                    {...register("cbu", {
-                                        required: true,
-                                    })}
                                 />
-                                {/*{-- errors --}*/}
                                 {errors.cbu && (
-                                    <span className="text-red-500 text-sm">
-                                        This field is required
-                                    </span>
+                                    <div className="text-red-500 text-sm">
+                                        {errors.cbu}
+                                    </div>
                                 )}
                             </div>
                             {/*{-- alias --}*/}
@@ -137,19 +150,19 @@ export default function SuppliersCreate({ auth }) {
                                 <SuppliersLabel label="Alias" />
                                 {/*{-- input --}*/}
                                 <input
-                                    placeholder="Alias"
-                                    className="block mt-1 w-full"
+                                    value={data.alias}
+                                    onChange={handleChange}
+                                    required
+                                    name="alias"
                                     type="text"
                                     id="alias"
-                                    {...register("alias", {
-                                        required: true,
-                                    })}
+                                    placeholder="Alias"
+                                    className="block mt-1 w-full"
                                 />
-                                {/*{-- errors --}*/}
                                 {errors.alias && (
-                                    <span className="text-red-500 text-sm">
-                                        This field is required
-                                    </span>
+                                    <div className="text-red-500 text-sm">
+                                        {errors.alias}
+                                    </div>
                                 )}
                             </div>
                             {/*{-- phone --}*/}
@@ -157,19 +170,19 @@ export default function SuppliersCreate({ auth }) {
                                 <SuppliersLabel label="Telefono" />
                                 {/*{-- input --}*/}
                                 <input
-                                    placeholder="Telefono"
-                                    className="block mt-1 w-full"
+                                    value={data.phone}
+                                    onChange={handleChange}
+                                    required
+                                    name="phone"
                                     type="number"
                                     id="phone"
-                                    {...register("phone", {
-                                        required: true,
-                                    })}
+                                    placeholder="Telefono"
+                                    className="block mt-1 w-full"
                                 />
-                                {/*{-- errors --}*/}
                                 {errors.phone && (
-                                    <span className="text-red-500 text-sm">
-                                        This field is required
-                                    </span>
+                                    <div className="text-red-500 text-sm">
+                                        {errors.phone}
+                                    </div>
                                 )}
                             </div>
                             {/*{-- email --}*/}
@@ -177,19 +190,19 @@ export default function SuppliersCreate({ auth }) {
                                 <SuppliersLabel label="Correo" />
                                 {/*{-- input --}*/}
                                 <input
-                                    placeholder="Correo"
-                                    className="block mt-1 w-full"
+                                    value={data.email}
+                                    onChange={handleChange}
+                                    required
+                                    name="email"
                                     type="email"
                                     id="email"
-                                    {...register("email", {
-                                        required: true,
-                                    })}
+                                    placeholder="Correo"
+                                    className="block mt-1 w-full"
                                 />
-                                {/*{-- errors --}*/}
                                 {errors.email && (
-                                    <span className="text-red-500 text-sm">
-                                        This field is required
-                                    </span>
+                                    <div className="text-red-500 text-sm">
+                                        {errors.email}
+                                    </div>
                                 )}
                             </div>
                         </div>
@@ -208,3 +221,24 @@ export default function SuppliersCreate({ auth }) {
         </AuthenticatedLayout>
     );
 }
+
+// {
+//     /*{-- email --}*/
+// }
+// <div>
+//     <SuppliersLabel label="Correo" />
+//     {/*{-- input --}*/}
+//     <input
+//         placeholder="Correo"
+//         className="block mt-1 w-full"
+//         type="email"
+//         id="email"
+//         {...register("email", {
+//             required: true,
+//         })}
+//     />
+//     {/*{-- errors --}*/}
+//     {errors.email && (
+//         <span className="text-red-500 text-sm">This field is required</span>
+//     )}
+// </div>;
